@@ -1,6 +1,5 @@
 package it.epicode.pizza.config;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,17 +24,15 @@ import it.epicode.pizza.model.subclasses.ToppingPatatine;
 import it.epicode.pizza.ordini.Ordine;
 import it.epicode.pizza.ordini.Tavolo;
 
-
 @Configuration
 public class MenuConfig {
 	@Bean
 	public Ordine ordine() {
-		
-		Ordine ordine = new Ordine(listaOrdine1(),tavolo(1,5,StatoTavolo.OCCUPATO));
-		
-		return ordine;
+		return new Ordine(listaOrdine1(), tavolo(1, 5, StatoTavolo.OCCUPATO));
 	}
-	@Bean List<MenuItem> listaOrdine1(){
+
+	@Bean
+	List<MenuItem> listaOrdine1() {
 		List<MenuItem> nuova = new ArrayList<MenuItem>();
 		nuova.add(pizza4Formaggi());
 		nuova.add(pizzaSalami());
@@ -44,11 +41,14 @@ public class MenuConfig {
 		nuova.add(drinkCola());
 		nuova.add(drinkCola());
 		nuova.add(pizza4FormPat());
-		 return nuova;
+		return nuova;
 	}
-	@Bean Tavolo tavolo(int id,int n_cop,StatoTavolo t) {
-		return new Tavolo(id,n_cop,t);
+
+	@Bean
+	Tavolo tavolo(int id, int n_cop, StatoTavolo t) {
+		return new Tavolo(id, n_cop, t);
 	}
+
 	@Bean
 	public Menu menu() {
 
@@ -63,20 +63,19 @@ public class MenuConfig {
 		menu.getMenuTopping().add(new ToppingMozzarella(pizzaSalami()));
 		menu.getMenuTopping().add(new ToppingPatatine(pizzaHawaiian()));
 
-
 		menu.getMenuDrink().add(drinkCola());
 		menu.getMenuDrink().add(drinkSprite());
 		menu.getMenuDrink().add(drinkGenerico("Fanta", 2.0, 150.0));
-		
+
 		menu.getMenuFranchise().add(franchisePortaChiavi());
-		
 
 		return menu;
 
 	}
+
 	@Bean
 	public ToppingPatatine pizza4FormPat() {
-		
+
 		return new ToppingPatatine(pizza4Formaggi());
 	}
 
@@ -84,10 +83,12 @@ public class MenuConfig {
 	public PizzaMargherita pizzaMargherita() {
 		return new PizzaMargherita();
 	}
+
 	@Bean
 	public Pizza4Formaggi pizza4Formaggi() {
 		return new Pizza4Formaggi();
 	}
+
 	@Bean
 	public PizzaAmericana pizzaAmericana() {
 		return new PizzaAmericana();
@@ -107,16 +108,17 @@ public class MenuConfig {
 	public Bevanda drinkCola() {
 		return new BevandaCola();
 	}
+
 	@Bean
-	public Bevanda drinkGenerico(String nome,Double prezzo,Double calorie) {
-		return new Bevanda(nome,prezzo,calorie);
+	public Bevanda drinkGenerico(String nome, Double prezzo, Double calorie) {
+		return new Bevanda(nome, prezzo, calorie);
 	}
-	
+
 	@Bean
 	public Bevanda drinkSprite() {
 		return new BevandaSprite();
 	}
-	
+
 	@Bean
 	public Franchise franchisePortaChiavi() {
 		return new FranchisePortaChiavi();
